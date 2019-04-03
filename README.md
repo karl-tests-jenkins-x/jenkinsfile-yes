@@ -14,4 +14,4 @@ sed -i 's/a/b/gI' junk-files/big-file-da
   * `/a/b` are the things we're substituting. In this case, we would replace `a` with `b`
 * Of `/gI`, 
   * `g` means "global," or, "replace all instances of `a` that we have in the file
-  * `I` means "Ignore case," or, "replace both `a` and `A` with `b`.
+  * `I` means "Ignore case," or, "replace both `a` and `A` with `b`."
