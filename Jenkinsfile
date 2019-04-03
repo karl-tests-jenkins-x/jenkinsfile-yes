@@ -18,8 +18,10 @@ pipeline {
             }
         }
         stage("S3") {
-            echo "Sleep 10 seconds"
-            sleep 10
+            steps {
+                echo "Sleep 10 seconds"
+                sleep 10
+            }
         }
     }
 }
