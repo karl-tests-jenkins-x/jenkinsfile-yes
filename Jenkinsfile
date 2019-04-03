@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent master
     stages {
         stage("S1") {
             steps {
@@ -10,12 +10,16 @@ pipeline {
             when {
                 expression {
                     echo "Should I run?"
-                    return true
+                    return false
                 }
             }
             steps {
                 sh "netstat -a"
             }
+        }
+        stage("S3") {
+            echo "Sleep 10 seconds"
+            sleep 10
         }
     }
 }
