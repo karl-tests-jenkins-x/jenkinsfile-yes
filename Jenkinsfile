@@ -4,23 +4,12 @@ pipeline {
         TWO_VARIABLES = "2"
     }
     parameters {
-        booleanParam defaultValue: false, description: 'There is no spoon.', name: 'THERE_IS_A_SPOON'
+        booleanParam defaultValue: true, description: 'Defaults to something else entirely.', name: 'DEFAULTS_TO_TRUE'
     }
     agent {
         label "master"
     }
     stages {
-        stage("S1") {
-            when {
-                expression {
-                    echo "Expression returns true so netstat will run"
-                    return true
-                }
-            }
-            steps {
-                sh "netstat -a"
-            }
-        }
         stage ("Parallel Wrapper"){
             parallel {
                 stage ("in-parallel-1") {
@@ -35,19 +24,18 @@ pipeline {
                         sh "lsof"
                     }
                 }
-                stage ("in-parallel-3") {
-                    steps{
-                        echo "in-parallel-3"
-                        sh "lsof"
-                    }
-                }
-                stage ("in-parallel-4") {
-                    steps{
-                        echo "in-parallel-4"
-                        sh "lsof"
-                    }
-                }
             } // end parallel block
+        }
+        stage("S1") {
+            when {
+                expression {
+                    echo "Expression returns true so netstat will run"
+                    return true
+                }
+            }
+            steps {
+                sh "netstat -a"
+            }
         }
         stage("S2") {
             steps {
