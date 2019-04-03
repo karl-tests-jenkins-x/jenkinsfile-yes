@@ -4,55 +4,56 @@ pipeline {
         TWO_VARIABLES = "2"
     }
     parameters {
-        booleanParam defaultValue: true, description: 'Defaults to something else entirely.', name: 'DEFAULTS_TO_TRUE'
+        booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
     }
     agent {
         label "master"
     }
     stages {
-        stage ("Parallel Wrapper"){
-            parallel {
-                stage ("in-parallel-1") {
-                    steps{
-                        echo "in-parallel-1"
-                        sh "lsof"
-                    }
-                }
-                stage ("in-parallel-2") {
-                    steps{
-                        echo "in-parallel-2"
-                        sh "lsof"
-                    }
-                }
-            } // end parallel block
+        stage("Base Jenkinsfile from master") {
+            steps {
+                echo "Base Jenkinsfile from master"
+            }
         }
-        stage("S1") {
+        stage("S1 netstat if param is true") {
             when {
                 expression {
-                    echo "Expression returns true so netstat will run"
-                    return true
+                    echo "Depends on the DEFAULTS_TO_TRUE param"
+                    return params.DEFAULTS_TO_TRUE
                 }
             }
             steps {
                 sh "netstat -a"
             }
         }
-        stage("S2") {
+        stage("S2 runs lsof") {
             steps {
-                echo "Basic Jenkinsfile"
+                echo "--> Run lsof"
+                sh "lsof"
             }
         }
-        stage ("S3") {
+        stage ("S3 runs ps -ef") {
             steps {
-                echo "Harder to create an intentional conflict than I thought"
+                echo "--> Run ps -ef"
                 sh "ps -ef"
             }
         }
-        stage("S4") {
+        stage("S4 sleep 10 seconds") {
             steps {
                 echo "Sleep 10 seconds"
                 sleep 10
             }
+        }
+    }
+    post{
+        always {
+            echo "--> post --> always"
+        }
+        success {
+            echo "--> post --> success"
+        }
+        failure {
+            echo "--> post --> failure"
         }
     }
 }
