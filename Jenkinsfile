@@ -15,7 +15,7 @@ pipeline {
                 echo "If you see this we must be running new master"
                 echo "Oh no what do we do"
                 echo "Change master out from under myself"
-                echo "Hopefully this generates a merge conflict
+                echo "Hopefully this generates a merge conflict"
             }
         }
         stage("S1 netstat if param is true") {
