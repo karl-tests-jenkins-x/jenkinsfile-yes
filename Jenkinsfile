@@ -10,9 +10,12 @@ pipeline {
         label "master"
     }
     stages {
-        stage("Base Jenkinsfile from master") {
+        stage("Changed master out from under myself") {
             steps {
-                echo "Base Jenkinsfile from master"
+                echo "If you see this we must be running new master"
+                echo "Oh no what do we do"
+                echo "Change master out from under myself"
+                echo "Hopefully this generates a merge conflict
             }
         }
         stage("S1 netstat if param is true") {
