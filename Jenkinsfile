@@ -29,7 +29,7 @@ pipeline {
         stage("S2 runs ps -ef") {
             steps {
                 echo "--> Run lsof"
-                sh "lsof"
+                sh "lsof | grep -v \"Permission denied\""
             }
         }
         stage("S3 sleep 10 seconds") {
