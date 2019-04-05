@@ -18,27 +18,21 @@ pipeline {
         stage("S1 netstat if param is true") {
             when {
                 expression {
-                    echo "Depends on the DEFAULTS_TO_TRUE param"
-                    return params.DEFAULTS_TO_TRUE
+                    echo "Depends on the SHOULD_I_NETSTAT param"
+                    return params.SHOULD_I_NETSTAT
                 }
             }
             steps {
                 sh "netstat -a"
             }
         }
-        stage("S2 runs lsof") {
+        stage("S2 runs ps -ef") {
             steps {
                 echo "--> Run lsof"
                 sh "lsof"
             }
         }
-        stage ("S3 runs ps -ef") {
-            steps {
-                echo "--> Run ps -ef"
-                sh "ps -ef"
-            }
-        }
-        stage("S4 sleep 10 seconds") {
+        stage("S3 sleep 10 seconds") {
             steps {
                 echo "Sleep 10 seconds"
                 sleep 10
