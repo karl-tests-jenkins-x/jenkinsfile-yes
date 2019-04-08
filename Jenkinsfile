@@ -10,12 +10,10 @@ pipeline {
         label "master"
     }
     stages {
-        stage("Changed master out from under myself") {
+        stage("Basic master") {
             steps {
-                echo "If you see this we must be running new master"
-                echo "Oh no what do we do"
-                echo "Change master out from under myself"
-                echo "Hopefully this generates a merge conflict"
+                echo "--> This is base master"
+                echo "--> We will not change this stage""
             }
         }
         stage("S1 netstat if param is true") {
@@ -29,13 +27,13 @@ pipeline {
                 sh "netstat -a"
             }
         }
-        stage("S2 runs ps -ef") {
+        stage("S2 runs ps -ef PR will echo after lsof") {
             steps {
                 echo "--> Run lsof"
                 sh "lsof | grep -v \"Permission denied\""
             }
         }
-        stage("S3 sleep 10 seconds") {
+        stage("S3 sleep 10 seconds new master will change this to 5 seconds") {
             steps {
                 echo "Sleep 10 seconds"
                 sleep 10
