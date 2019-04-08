@@ -13,7 +13,7 @@ pipeline {
         stage("Basic master") {
             steps {
                 echo "--> This is base master"
-                echo "--> We will not change this stage""
+                echo "--> We will not change this stage"
             }
         }
         stage("S1 netstat if param is true") {
