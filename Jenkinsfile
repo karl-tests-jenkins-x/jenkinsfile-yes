@@ -33,10 +33,10 @@ pipeline {
                 sh "lsof | grep -v \"Permission denied\""
             }
         }
-        stage("S3 sleep 10 seconds new master will change this to 5 seconds") {
+        stage("S3 new master sleeps 5 seconds") {
             steps {
-                echo "Sleep 10 seconds"
-                sleep 10
+                echo "Sleep 5 seconds"
+                sleep 5
             }
         }
     }
