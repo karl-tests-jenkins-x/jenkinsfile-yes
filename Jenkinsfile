@@ -4,7 +4,7 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "master"
+        BRANCH_VARIABLE = "test-my-jenkinsfile"
     }
     parameters {
         booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
@@ -40,7 +40,9 @@ pipeline {
         }
         stage("S3 only if branch != master") {
             when {
-                branch '!master'
+                not {
+                    branch 'master'
+                }
             }
             steps {
                 echo "--> NOT MASTER"
@@ -53,7 +55,7 @@ pipeline {
             }
             steps {
                 echo "--> PR Branch"
-                sh "du -h -d 1 /"
+                sh "du -h -d 1"
             }
         }
     }
