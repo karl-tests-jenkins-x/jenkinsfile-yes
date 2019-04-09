@@ -40,7 +40,9 @@ pipeline {
         }
         stage("S3 only if branch != master") {
             when {
-                branch '!master'
+                not {
+                    branch 'master'
+                }
             }
             steps {
                 echo "--> NOT MASTER"
