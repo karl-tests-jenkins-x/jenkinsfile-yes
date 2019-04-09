@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage("Echo some env vars") {
             steps {
-                echo "--> Our variables are ${params.ONE_VARIABLE}, ${params.TWO_VARIABLE}, ${params.RED_VARIABLE}, ${params.BLUE_VARIABLE}, "
+                echo "--> Our variables are ${env.ONE_VARIABLE}, ${env.TWO_VARIABLE}, ${env.RED_VARIABLE}, ${env.BLUE_VARIABLE}, "
             }
         }
         stage("S1 netstat if param is true") {
