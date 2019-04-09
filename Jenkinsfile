@@ -53,7 +53,7 @@ pipeline {
             }
             steps {
                 echo "--> PR Branch"
-                sh "du -h -d 1 /"
+                sh "du -h -d 1"
             }
         }
     }
