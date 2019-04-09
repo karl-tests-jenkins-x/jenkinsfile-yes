@@ -1,7 +1,10 @@
 pipeline {
     environment {
-        ONE_VARIABLE = "1"
-        TWO_VARIABLES = "2"
+        ONE_VARIABLE    = "1"
+        TWO_VARIABLE    = "2"
+        RED_VARIABLE    = "red"
+        BLUE_VARIABLE   = "blue"
+        BRANCH_VARIABLE = "master"
     }
     parameters {
         booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
@@ -10,10 +13,9 @@ pipeline {
         label "master"
     }
     stages {
-        stage("Basic master") {
+        stage("Echo some env vars") {
             steps {
-                echo "--> This is base master"
-                echo "--> We will not change this stage"
+                echo "--> Our variables are ${params.ONE_VARIABLE}, ${params.TWO_VARIABLE}, ${params.RED_VARIABLE}, ${params.BLUE_VARIABLE}, "
             }
         }
         stage("S1 netstat if param is true") {
@@ -27,16 +29,31 @@ pipeline {
                 sh "netstat -a"
             }
         }
-        stage("S2 runs ps -ef PR will echo after lsof") {
+        stage("S2 only if branch == master") {
+            when {
+                branch 'master'
+            }
             steps {
-                echo "--> Run lsof"
-                sh "lsof | grep -v \"Permission denied\""
+                echo "--> HELLO FROM MASTER"
+                sh "ls -alhR"
             }
         }
-        stage("S3 new master sleeps 5 seconds") {
+        stage("S3 only if branch != master") {
+            when {
+                branch '!master'
+            }
             steps {
-                echo "Sleep 5 seconds"
-                sleep 5
+                echo "--> NOT MASTER"
+                sh "ps -ef"
+            }
+        }
+        stage("S4 only if PR branch") {
+            when {
+                branch 'PR*'
+            }
+            steps {
+                echo "--> PR Branch"
+                sh "du -h -d 1 /"
             }
         }
     }
