@@ -4,13 +4,13 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "april-9-pair-with-liam"
+        BRANCH_VARIABLE = "master"
     }
     parameters {
         booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
     }
     agent {
-        label "master"
+        label "linux-remote"
     }
     stages {
         stage("Echo some env vars") {
