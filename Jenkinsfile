@@ -4,7 +4,7 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "test-my-jenkinsfile"
+        BRANCH_VARIABLE = "master"
     }
     parameters {
         booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage("Echo some env vars") {
             steps {
-                echo "--> Our variables are ${env.ONE_VARIABLE}, ${env.TWO_VARIABLE}, ${env.RED_VARIABLE}, ${env.BLUE_VARIABLE}, "
+                echo "--> Our variables are ${env.ONE_VARIABLE}, ${env.TWO_VARIABLE}, ${env.RED_VARIABLE}, ${env.BLUE_VARIABLE}"
             }
         }
         stage("S1 netstat if param is true") {
