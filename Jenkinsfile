@@ -13,6 +13,24 @@ pipeline {
         label "linux-remote"
     }
     stages {
+        stage("testing-1 cpuinfo") {
+            steps {
+                echo "--> Test cpuinfo"
+                sh "cat /proc/cpuinfo"
+            }
+        }
+        stage("testing-2 ls") {
+            steps {
+                echo "--> Test local filesystem contents"
+                sh "ls -alhR"
+            }
+        }
+        stage("testing-3 du") {
+            steps {
+                echo "--> Test disk usage"
+                sh "du -h -d 1"
+            }
+        }
         stage("Echo some env vars") {
             steps {
                 echo "--> Our variables are ${env.ONE_VARIABLE}, ${env.TWO_VARIABLE}, ${env.RED_VARIABLE}, ${env.BLUE_VARIABLE}"
