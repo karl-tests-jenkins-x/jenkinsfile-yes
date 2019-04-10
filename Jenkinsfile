@@ -13,6 +13,11 @@ pipeline {
         label "linux-remote"
     }
     stages {
+        stage ("PR-Head yes, PR-Merge no") {
+            steps {
+                echo "--> Should not see this on PR-Head branch"
+            }
+        }
         stage("Echo some env vars") {
             steps {
                 echo "--> Our variables are ${env.ONE_VARIABLE}, ${env.TWO_VARIABLE}, ${env.RED_VARIABLE}, ${env.BLUE_VARIABLE}"
