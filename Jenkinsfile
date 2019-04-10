@@ -29,7 +29,7 @@ pipeline {
                 sh "netstat -a"
             }
         }
-        stage("S2 only if branch == master") {
+        stage("master") {
             when {
                 branch 'master'
             }
@@ -38,7 +38,16 @@ pipeline {
                 sh "ls -alhR"
             }
         }
-        stage("S3 only if branch != master") {
+        stage("production") {
+            when {
+                branch 'production'
+            }
+            steps {
+                echo "--> HELLO FROM PRODUCTION"
+                sh "ls -alhR"
+            }
+        }
+        stage("!= master") {
             when {
                 not {
                     branch 'master'
@@ -49,7 +58,7 @@ pipeline {
                 sh "ps -ef"
             }
         }
-        stage("S4 only if PR branch") {
+        stage("PR branch") {
             when {
                 branch 'PR*'
             }
