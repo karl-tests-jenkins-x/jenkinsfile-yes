@@ -4,7 +4,7 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "master"
+        BRANCH_VARIABLE = "testing/this-is-a-long-one"
     }
     parameters {
         booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
@@ -18,9 +18,29 @@ pipeline {
                 echo "--> Should not see this on PR-Head branch"
             }
         }
+        stage("testing-1 cpuinfo") {
+            steps {
+                echo "--> Test cpuinfo"
+                sh "cat /proc/cpuinfo"
+            }
+        }
+        stage("testing-2 ls") {
+            steps {
+                echo "--> Test local filesystem contents"
+            steps {
+                sh "ls -alhR"
+            }
+        }
+        stage("testing-3 du") {
+            steps {
+                echo "--> Test disk usage"
+                sh "du -h -d 1"
+            }
+        }
         stage("Echo some env vars") {
             steps {
                 echo "--> Our variables are ${env.ONE_VARIABLE}, ${env.TWO_VARIABLE}, ${env.RED_VARIABLE}, ${env.BLUE_VARIABLE}"
+                echo "--> BRANCH_VARIABLE is ${env.BRANCH_VARIABLE}"
             }
         }
         stage("S1 netstat if param is true") {
