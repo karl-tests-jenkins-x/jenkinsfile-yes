@@ -27,7 +27,6 @@ pipeline {
         stage("testing-2 ls") {
             steps {
                 echo "--> Test local filesystem contents"
-            steps {
                 sh "ls -alhR"
             }
         }
