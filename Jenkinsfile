@@ -36,9 +36,9 @@ pipeline {
                 branch 'master'
             }
             steps {
+                echo "--> This is master again"
                 echo "--> HELLO FROM MASTER"
                 sh "ls -alhR"
-                sh "whoami"
             }
         }
         stage("production") {
