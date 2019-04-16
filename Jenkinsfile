@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 echo "--> HELLO FROM MASTER"
-                sh "ls -alhR"
+                sh "lsof"
             }
         }
         stage("production") {
