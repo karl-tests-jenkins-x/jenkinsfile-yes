@@ -5,7 +5,7 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "master"
+        BRANCH_VARIABLE = "intentional-conflict"
     }
     parameters {
         booleanParam defaultValue: false, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
@@ -59,7 +59,8 @@ pipeline {
             steps {
                 echo "--> PR Branch"
                 echo "--> FALSE for SHOULD_I_NETSTAT"
-                echo "--> A nice normal message"
+                echo "--> intentional conflict here"
+                echo "--> intentional conflict here"
                 sh "du -h -d 1"
             }
         }
