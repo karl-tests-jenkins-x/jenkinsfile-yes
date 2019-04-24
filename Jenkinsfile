@@ -8,7 +8,7 @@ pipeline {
         BRANCH_VARIABLE = "master"
     }
     parameters {
-        booleanParam defaultValue: true, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
+        booleanParam defaultValue: false, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
     }
     agent {
         label "linux-remote"
@@ -58,7 +58,7 @@ pipeline {
             }
             steps {
                 echo "--> PR Branch"
-                echo "Change me to test merges"
+                echo "--> FALSE for SHOULD_I_NETSTAT"
                 sh "du -h -d 1"
             }
         }
