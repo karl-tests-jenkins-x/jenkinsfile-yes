@@ -5,7 +5,7 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "master"
+        BRANCH_VARIABLE = "extra-branch-1"
     }
     parameters {
         booleanParam defaultValue: false, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
