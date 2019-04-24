@@ -59,6 +59,7 @@ pipeline {
             steps {
                 echo "--> PR Branch"
                 echo "--> FALSE for SHOULD_I_NETSTAT"
+                echo "--> A nice normal message"
                 sh "du -h -d 1"
             }
         }
