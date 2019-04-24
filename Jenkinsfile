@@ -20,17 +20,17 @@ pipeline {
                 echo "--> BRANCH_VARIABLE is ${env.BRANCH_VARIABLE}"
             }
         }
-        stage("S1 netstat if param is true") {
-            when {
-                expression {
-                    echo "Depends on the SHOULD_I_NETSTAT param"
-                    return params.SHOULD_I_NETSTAT
-                }
-            }
-            steps {
-                sh "netstat -a"
-            }
-        }
+
+
+
+
+
+
+
+
+
+
+
         stage("master") {
             when {
                 branch 'master'
