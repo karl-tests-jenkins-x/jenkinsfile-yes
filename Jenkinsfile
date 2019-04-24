@@ -58,7 +58,7 @@ pipeline {
             }
             steps {
                 echo "--> PR Branch"
-                echo "Change me to test merges"
+                echo "I should now be diverged"
                 sh "du -h -d 1"
             }
         }
