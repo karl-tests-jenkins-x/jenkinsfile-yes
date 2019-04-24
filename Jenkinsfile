@@ -41,15 +41,6 @@ pipeline {
                 sh "ls -alhR"
             }
         }
-        stage("production") {
-            when {
-                branch 'production'
-            }
-            steps {
-                echo "--> HELLO FROM PRODUCTION"
-                sh "ls -alhR"
-            }
-        }
         stage("!= master") {
             when {
                 not {
