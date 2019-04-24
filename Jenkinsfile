@@ -59,7 +59,7 @@ pipeline {
             steps {
                 echo "--> PR Branch"
                 echo "--> FALSE for SHOULD_I_NETSTAT"
-                echo "--> A nice normal message"
+                echo "--> This should make master be in conflict"
                 sh "du -h -d 1"
             }
         }
