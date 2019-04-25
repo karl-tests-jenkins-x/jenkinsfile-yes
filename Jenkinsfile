@@ -31,6 +31,11 @@ pipeline {
                 sh "netstat -a"
             }
         }
+        stage ("Any open files in /var on this agent?") {
+            steps {
+                sh "lsof | grep var | grep jenkins"
+            }
+        }
         stage("change branch") {
             when {
                 branch 'change*'
