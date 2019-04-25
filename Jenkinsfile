@@ -5,7 +5,7 @@ pipeline {
         TWO_VARIABLE    = "2"
         RED_VARIABLE    = "red"
         BLUE_VARIABLE   = "blue"
-        BRANCH_VARIABLE = "master"
+        BRANCH_VARIABLE = "change-junk-file-instead"
     }
     parameters {
         booleanParam defaultValue: false, description: 'Should we run netstat', name: 'SHOULD_I_NETSTAT'
@@ -29,6 +29,17 @@ pipeline {
             }
             steps {
                 sh "netstat -a"
+            }
+        }
+        stage("change branch") {
+            when {
+                branch 'change*'
+            }
+            steps {
+                echo "--> change branch"
+                echo "--> only runs if branch name starts with change"
+                sh "tar -czv junk-file -f junk-file.tar.gz"
+                sh "ls -alh junk*"
             }
         }
         stage("master") {
