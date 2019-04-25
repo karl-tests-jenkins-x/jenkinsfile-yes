@@ -33,6 +33,7 @@ pipeline {
         }
         stage ("Any open files in /var on this agent?") {
             steps {
+                sh "pwd"
                 sh "lsof | grep var | grep jenkins"
             }
         }
