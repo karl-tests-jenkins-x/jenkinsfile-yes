@@ -33,7 +33,7 @@ pipeline {
         }
         stage ("Any open files in /var on this agent?") {
             steps {
-                sh 'lsof | grep var | grep jenkins'
+                sh 'lsof | grep var'
             }
         }
         stage("change branch") {
